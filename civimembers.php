@@ -15,14 +15,13 @@
 
 function civimembers_install() {
 
-   global $wpdb, $helloworld_table_name;
-
    return ;
  }
   register_activation_hook(__FILE__, 'civimembers_install');
 
 function civimembers_uninstall() {
 
+ return ;
 }
 
 register_deactivation_hook(__FILE__, 'civimembers_uninstall');
