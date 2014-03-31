@@ -7,7 +7,6 @@
    Author: manish
    Author URI: example.com
   */
-$helloworld_table_name = "helloworldsnippets";
 
   /*
   * 
