@@ -1,0 +1,66 @@
+<?php
+
+  /*
+   Plugin Name: Civicrm Code Generator for civimembers or events
+   Description: Civicrm Members Or Events
+   program in a random language.
+   Version: 0.1
+   Author: manish
+   Author URI: example.com
+  */
+$helloworld_table_name = "helloworldsnippets";
+
+  /*
+  * API connect to for
+  * author@manish
+  */
+
+
+function civimembers_install() {
+
+   global $wpdb, $helloworld_table_name;
+
+   return ;
+ }
+
+  register_activation_hook(__FILE__, 'civimembers_install');
+
+function civimembers_uninstall() {
+
+  global $wpdb, $helloworld_table_name;
+
+  $table_name = $wpdb->prefix . $helloworld_table_name;
+
+  $drop_sql = "DROP TABLE IF EXISTS ".$table_name;
+
+  $wpdb->query($drop_sql);
+
+}
+
+register_deactivation_hook(__FILE__, 'civimembers_uninstall');
+
+
+function civimembers_get_civicrm_members( $id ) {
+
+     $config = CRM_Core_Config::singleton();
+
+     $params = array(
+         'version' => 3,
+         'page' => 'CiviCRM',
+         'q' => 'civicrm/ajax/rest',
+         'sequential' => 1,
+         'id' =>$id['id'],
+         );
+     $result = civicrm_api('Event', 'get', $params);
+
+     return $result["values"][0]["description"];
+   }
+
+  /*
+   [civievents id="your Event id"]
+   call back function for add_shortcode
+  */
+
+  add_shortcode('civievents','civimembers_get_civicrm_members');
+
+  ?>
