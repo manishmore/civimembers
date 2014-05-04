@@ -27,7 +27,7 @@ function civimembers_uninstall() {
 register_deactivation_hook(__FILE__, 'civimembers_uninstall');
 
 
-function civimembers_get_civicrm_members( $id ) {
+function civimembers_get_civicrm_members($id) {
 
      require_once "wp-content/plugins/civicrm/civicrm.settings.php";
 
@@ -51,5 +51,25 @@ function civimembers_get_civicrm_members( $id ) {
   */
 
   add_shortcode('civievents','civimembers_get_civicrm_members');
+  
+function civievents_get_list($limit){
+		$params = array(
+			'version' => 3,
+			'page' => 'CiviCRM',
+			'q' => 'civicrm/ajax/rest',
+			'sequential' => 1,
+			);
+		$result = civicrm_api('Event', 'get', $params);
+                  echo "<br/>";
+                  var_dump($result);
+    
+}
+
+/*
+ [civieventlist limit=""]
+ 
+*/
+
+add_shortcode('civievents','civievents_get_list');
 
   ?>
