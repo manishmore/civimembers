@@ -9,5 +9,6 @@ Stable tag: trunk
 This plugin simply outputs a Civicrm Members ship code snippet wherever you specify.
 
 use as in wordpress page id put id here which you whant to show 
-[civievents id="your Event id"] 
+
+[civievents id="your civicrm Event Id"] 
 
