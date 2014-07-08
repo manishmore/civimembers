@@ -53,25 +53,21 @@ add_shortcode('civievents','civimembers_get_civicrm_members');
 function civievents_get_list(){
   require_once "wp-content/plugins/civicrm/civicrm.settings.php";
   require_once 'CRM/Core/Config.php';
-
-	$params = array(
+  $params = array(
     'version' => 3,
     'page' => 'CiviCRM',
     'q' => 'civicrm/ajax/rest',
     'sequential' => 1,
   );
-  $result = civicrm_api('Event', 'get', $params);
-  var_dump($result);
-die('sdsdsd');
-  $k = 0;
-  /* CRM_Core_Error::debug( '$result', $result ); */
-
-  while($result)
-    {
+   $result = civicrm_api('Event', 'get', $params);
+   $k = 0;
+   /* CRM_Core_Error::debug( '$result', $result ); */
+   while($result)
+     {
       echo $list["$k"]['title'];
       if($k=2){
         break;
-      }
+     }
       $k++;
     }
   //  return $result;
